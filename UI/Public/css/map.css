@@ -1,0 +1,112 @@
+html{height:100%;}
+body{height:100%;
+    font-family: Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'tohoma,sans-serif';
+    font-size: 12px;
+    line-height: 18px;
+    word-wrap: break-word;
+    position: relative;
+    background-color: #fafafa;
+}
+body, html {overflow-x: hidden;overflow-y: auto;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, em, p, font, img, small, strong, center, dl, dt, dd, ol, ul, li, form, label, table, caption, tbody, tr, th, td
+{margin:0;padding:0;border:0;outline:0;vertical-align:baseline;}
+a{color:#000;text-decoration: none;}
+ul{list-style: none;}
+.navRow {  width: 100%;background-color:#93BBE2;}
+.navBar {width: 960px;;margin:0 auto;  }
+.navBar .navLogo{ float: left;margin: 9px; }
+.navBar .navLogo img{ height: 40px;  }
+.navBar .navLogo span{  float: right;color:#fff; font-size: 12px; margin-left: 5px;margin-top: 16px;font-weight:normal;}
+
+.navUL{list-style: none;float:right;margin-top: 7px;}
+.navUL a{color:#fff;}
+.navUL li{float:left;padding:4px 15px;border:1px solid #fff;border-radius:10px;margin:10px;font-size: 12px;}
+.navUL li:hover{background-color:#fff;}
+.navUL li:hover a{color:#93BBE2;}
+
+.nav-placeholder{height: 58px;}
+.container{width:960px;margin:0 auto;padding:30px 10px;}
+.footer{width: 100%;background-color: #3e3d3d;}
+.footer .footer-content{width:960px;margin:0 auto;padding:40px 0 20px;}
+.footer-copyright{text-align: center;color:#7e7e7e}
+.index-title{font-size:20px;line-height: 20px;padding:20px 0;}
+.index-title span{border-bottom:3px solid #93BBE2;padding-right:15px;padding-bottom:5px;}
+
+.box{box-shadow: 0 3px 5px #ccc;border-radius:0;float:left;background-color:#fff;}
+.box-img{position: relative;}
+.banner img{width:100%;display:block;}
+.mask{ position: absolute;opacity: 0.6;top:0;left:0;height: 100%;width: 100%;}
+.mask p{text-align:center;position: relative;top:50%;margin-top:-7px;font-size:14px;}
+.black-mask{background-color:#000;}
+.black-mask p{color:#fff;}
+.white-mask{background-color:#fff;}
+.white-mask p{color:#000;}
+.hover-mask {opacity: 0;transition: opacity .2s ease-in .2s;}
+.hover-mask:hover {opacity: 0.2}
+
+.typeBox{width:300px;margin:10px 10px;}
+.typeBox img{height: 200px;width:100%;display: block;}
+.typeBox .box-label{padding:5px 10px;font-size:16px;line-height: 28px;}
+
+.clearFix{*zoom:1}
+.clearFix:before,.clearFix:after{content:"";display:table;line-height:0;}
+.clearFix:after{clear:both;}
+
+.tool-bar{background-color:rgba(255,255,255,0.8);position: absolute;top:20px;left:15px;z-index:999;box-shadow:1px 1px 4px #828282;border-radius: 4px;}
+.tool-bar .input-search,.tool-bar .btn {float:left;}
+.tool-bar .btn:hover,.tool-bar a:hover{color:#4078e2;cursor:pointer;}
+.tool-bar .input-search{position:relative;}
+.tool-bar input{width:170px;background-color:#fff;padding:0 5px;font-size:12px;border-width: 0 1px 0 1px;border-style: solid;border-color: #E8E8E8;line-height: 28px;}
+.tool-bar .input-search .icon-close {position: absolute;right:0;padding:5px;padding-top:6px;color:#B9B9B9}
+.back-btn a{display: block;}
+#s-result{position: absolute;top:30px;width: 100%;background-color:#fff;}
+
+.info_title{color: #4078e2;font-size:16px;font-weight:bold;padding-left:36px;}
+.info_content{font-size:12px;position: relative;}
+.info_content .info_logo{background:url(../img/s_logo.png)center center no-repeat;width:30px;height:37px;position: absolute;left:0;top:-28px;}
+.info_content p{margin:5px 0;padding:0;font-size:12px;}
+.info_content label{text-align:right;width:30%;display:block;float:left;margin-left:-5px;padding-right:5px;}
+.info_content span{width:70%;display:block;float:left;}
+
+.wrapper{overflow-x:hidden;overflow-y:auto;background:#eaeaea;padding-left:250px;height: 100%;}
+* html .wrapper{height:1%;} /* So IE plays nice */
+.content{width:100%;margin-left:250px;border-left:250px solid #425069;background:#eaeaea;float:right;}
+.sideBar{background-color:#425069;width:250px;position: fixed;top:0;left:0px;}
+.aside,.content{min-height:100%;height:auto !important;height:auto;}
+.sideBar_header img{margin:0 auto;display:block;}
+.sideBar_nav a{color:#d7dee6}
+.sideBar_nav a:hover{color:#fff;}
+.sideBar_nav i.iconfont {padding-right:8px;}
+.sideBar_nav li{line-height:50px;font-size:14px;color:#d7dee6;font-weight: normal;text-align:left;list-style: none;}
+.sideBar_nav li span {display:block;padding:0 30px;}
+.sideBar_nav li a {display:block;padding:0 30px;}
+.sideBar_nav li:hover {background-color: #384459;}
+.sideBar_nav li.active>a {background-color:#00b27a;color:#fff;font-weight: 400;box-shadow:inset -3px 0 0 0 #00e59d}
+.sideBar_nav li.active>a:hover {background-color: #0b9966;}
+.sideBar_nav li.active ul {background-color: #343f54;color:#fff;font-weight: 400;}
+.sideBar_nav li ul li {display:none;padding-left:20px}
+.sideBar_nav li.active ul li {display: block;}
+.row{padding:1%;}
+.draw-half{height:30em;float:left;width:40%;padding:4%;margin:2% 1% 0}
+.draw-full{height:30em;float:left;width:90%;padding:4%;margin:2% 1%}
+.r-top{background-color:#343F54;line-height: 50px;color:#fff;font-size:14px;height:50px;}
+.r-top .addr,.r-top .date{float:left;padding:0 20px;}
+
+.btn{font-size:14px;padding:5px 15px;border-radius: 5px;border-width:1px;border-style: solid;text-align: center}
+.btn.btn-noBorder {border-width:0;}
+.btn.btn-blue {border-color:#93BBE2;color:#717171;}
+.btn.btn-Screen {width:5%;border-color:#888;color:#333;position: absolute;top:2%;right: 2%;}
+.btn-l{float:left;}
+
+.btn-group-loginUp{text-align: center;height: 5%;}
+.btn-group-loginUp .btn{margin:10px;width:15%;display:inline-block;line-height: 100%;}
+.btn-group-loginUp .btn.active{background:#93BBE2;color:#fff;}
+.wait-load {text-align: center;height: 100%;position: relative;}
+.wait-load span {position: absolute;top:50%;left:50%;margin-left:-3em;font-size: 18px;line-height: 18px;}
+
+/*.draw-body .navRow{height: 6%;}
+.draw-body .footer{height: 4%;}*/
+#main{height: 100%}
+#mainContainer{position: relative;height: 90%;box-sizing:border-box;padding:30px;background-color: #fff;}
+#main:-webkit-full-screen{height: 100%;width:100%;padding: 100px;margin: 0;}
+#mainContainer:-webkit-full-screen{height: 100%;width: 100%;}

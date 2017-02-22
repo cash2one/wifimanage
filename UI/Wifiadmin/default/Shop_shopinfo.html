@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><#:C('sitename')#>-管理后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable=no />
+<style type="text/css">
+    #allmap{width: 85%;height: 300px; margin:0;font-family:"微软雅黑";}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=nGa1MmrYfdZGeaQ5MTQtVkyu"></script>
+<include file="Pub:style"/>
+<!-- libraries -->
+<link href="<#$Theme['P']['root']#>/bootadmin/css/lib/uniform.default.css" type="text/css" rel="stylesheet" />
+<link href="<#$Theme['P']['root']#>/bootadmin/css/lib/select2.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="<#$Theme['P']['root']#>/bootadmin/css/compiled/form-showcase.css" type="text/css" media="screen" />
+
+<body>
+
+
+<include file="Pub:Nav"/>
+<include file="Pub:Sidebar"/>
+
+<!-- main container -->
+<div class="content">
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="form-page">
+
+            <div class="row-fluid form-wrapper">
+                <div class="span12">
+                    <h4>编辑商户备注</h4>
+                </div>
+                <!-- left column -->
+                <div class="span8 column">
+                    <form name="" method="post" action="<#:U('shopinfo');#>">
+                        <div class="alert span9" style="display: none;">
+                            <span id="alertmsg"></span>
+                        </div>
+                        <div class="field-box">
+                            <label>商户名称:</label>
+                            <input class="span8" type="text"  data-toggle="tooltip" data-trigger="focus" title="商户名称不能超过20个字" data-placement="right" name="top_hotspot_name" id="top_hotspot_name" value="<#$shopinfo.top_hotspot_name#>"/>
+                            <input type="hidden" name="id" id="id" value="<#$shopinfo.id#>">
+                            <input type="hidden" name="shopid" id="shopid" value="<#$shopinfo.shopid#>">
+                        </div>
+                        <div class="field-box">
+                            <label>热点名称:</label>
+                            <input class="span8" type="text" name="hotspot_name" id="hotspot_name" value="<#$shopinfo.hotspot_name#>"/>
+                        </div>
+                        <div class="field-box">
+                            <label>覆盖范围:</label>
+                            <input class="span8" type="text" name="cover_area" id="cover_area" value="<#$shopinfo.cover_area#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>传输类型:</label>
+                            <div class="span8">
+                                <label class="radio">
+                                    <input type="radio" name="transport_type" value="sdh" <eq name="shopinfo['transport_type']" value="sdh">checked</eq>>sdh
+                                    <input type="radio" name="transport_type" value="GPON" <eq name="shopinfo['transport_type']" value="GPON">checked</eq>>GPON
+                                    <input type="radio" name="transport_type" value="协议转换器" <eq name="shopinfo['transport_type']" value="协议转换器">checked</eq>>协议转换器
+                                    <input type="radio" name="transport_type" value="MSTP" <eq name="shopinfo['transport_type']" value="MSTP">checked</eq>>MSTP
+                                    <input type="radio" name="transport_type" value="PON" <eq name="shopinfo['transport_type']" value="PON">checked</eq>>PON
+                                    <input type="radio" name="transport_type" value="双绞线" <eq name="shopinfo['transport_type']" value="双绞线">checked</eq>>双绞线
+                                    <input type="radio" name="transport_type" value="协转" <eq name="shopinfo['transport_type']" value="协转">checked</eq>>协转
+                                    <input type="radio" name="transport_type" value="协议" <eq name="shopinfo['transport_type']" value="协议">checked</eq>>协议
+                                    <input type="radio" name="transport_type" value="直连" <eq name="shopinfo['transport_type']" value="直连">checked</eq>>直连
+                                    <input type="radio" name="transport_type" value="其它" <eq name="shopinfo['transport_type']" value="其它">checked</eq>>其它
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>集成厂家:</label>
+                            <input class="span8" type="text" name="factory" id="factory" value="<#$shopinfo.factory#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>热点带宽:</label>
+                            <input class="span8" type="text" name="bandwidth" id="bandwidth" value="<#$shopinfo.bandwidth#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>代维厂商:</label>
+                            <input class="span8" type="text" name="smc_factory" id="smc_factory" value="<#$shopinfo.smc_factory#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>代维联系方式:</label>
+                            <input class="span8" type="text" name="smc_phone" id="smc_phone" value="<#$shopinfo.smc_phone#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>物理点粗类型:</label>
+                            <input class="span8" type="text" name="ptype" id="ptype" value="<#$shopinfo.ptype#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>物理点细类型:</label>
+                            <input class="span8" type="text" name="ptype1" id="ptype1" value="<#$shopinfo.ptype1#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>热点区域类型:</label>
+                            <input class="span8" type="text" name="hotsport_areaType" id="hotsport_areaType" value="<#$shopinfo.hotsport_areaType#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>热点内AP数:</label>
+                            <input class="span8" type="text" name="apcount" id="apcount" value="<#$shopinfo.apcount#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>交换机端口:</label>
+                            <input class="span8" type="text" name="port" id="port" value="<#$shopinfo.port#>" />
+                        </div>
+
+                        <div class="field-box ">
+                            <input type="submit"   class="btn-glow primary "  id="btn_save" value="确认编辑">
+                            &nbsp;&nbsp;
+                            <input type="button"   class="btn-glow  " id="btn_back" value="返回列表">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- right column -->
+                <div class="span4 column pull-right">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- scripts -->
+<script src="<#$Theme['P']['js']#>/jquery.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/jquery.uniform.min.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/common.js"></script>
+<script src="<#$Theme['P']['js']#>/region_select.js"></script>
+<script type="text/javascript">
+    new PCAS('province', 'city', 'area', '<#$shop['province']#>', '<#$shop.city#>', '<#$shop.area#>');
+</script>
+<!-- call this page plugins -->
+<script type="text/javascript">
+
+
+    $(function () {
+
+        // add uniform plugin styles to html elements
+        $("input:checkbox, input:radio").uniform();
+        $('#btn_back').bind('click',function(){
+            location.href="<#:U('index')#>";
+        });
+
+        /*$('#btn_save').bind('click',function(){
+
+            var top_hotspot_name=$('#top_hotspot_name').val();
+            var hotspot_name=$('#hotspot_name').val();
+            var cover_area=$('#cover_area').val();
+            var transport_type=$('#transport_type').val();
+            var factory=$('#factory').val();
+            var bandwidth=$('#bandwidth').val();
+            var smc_factory=$('#smc_factory').val();
+            var smc_phone=$('#smc_phone').val();
+            var ptype=$('#ptype').val();
+            var ptype1=$('#ptype1').val();
+            var hotsport_areaType=$('#hotsport_areaType').val();
+            var apcount=$('#apcount').val();
+            var port=$('#port').val();
+            var id=$('#id').val();
+            $.ajax({
+                url: '<#:U('shopinfo')#>',
+                type: "post",
+                data:{
+                    'top_hotspot_name':top_hotspot_name,
+                    'hotspot_name':hotspot_name,
+                    'cover_area':cover_area,
+                    'transport_type':transport_type,
+                    'factory':factory,
+                    'bandwidth':bandwidth,
+                    'smc_factory':smc_factory,
+                    'smc_phone':smc_phone,
+                    'ptype':ptype,
+                    'ptype1':ptype1,
+                    'hotsport_areaType':hotsport_areaType,
+                    'apcount':apcount,
+                    'port':port,
+                    'id':id,
+                    '__hash__':$('input[name="__hash__"]').val()
+                },
+                dataType:'json',
+                error:function(){
+                    AlertTips("服务器忙，请稍候再试1",1500);
+                },
+                success:function(data){
+
+                    if(data.error==0){
+                        location.href=data.url;
+                    }else{
+                        AlertTips(data.msg,1500);
+                    }
+                }
+            });
+        });*/
+
+    });
+</script>
+</body>
+</html>

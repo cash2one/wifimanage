@@ -1,0 +1,1 @@
+SHOW COLUMNS FROM `wifi_user_log`

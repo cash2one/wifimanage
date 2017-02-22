@@ -1,0 +1,1 @@
+select DISTINCT a.id,a.title,a.default_status, a.ad_pos,ad_thumb,ad_sort,a.mode,a.add_time,a.update_time,a.startdate,a.enddate from wifi_ad a where enddate>='1463500800' order by a.id desc limit 0,20

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>All-Wifi 数据中心</title>
+	<title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="<#$Theme['P']['root']#>/css/map.css"/>
+    <script src="<#$Theme['P']['js']#>/jquery.js"></script>
+    <script src="<#$Theme['P']['js']#>/main1.js"></script>
+<!-- libraries -->
+</head>
+<include file="Pub:style"/>
+<body class="draw-body">
+<include file="Pub:Nav"/>
+<include file="Pub:Sidebar"/>
+    <!-- <div class="navRow clearFix">
+        <div class="navBar clearFix" style="width:auto;padding:0 100px;">
+            <div class="navLogo">
+                <a href="index.html"><img src="<#$Theme['P']['root']#>/img/relogo.png" alt=""/></a>
+                <span>数据中心</span>
+            </div>
+            <ul class="navUL">
+                <li><a href="javascript:void(0);">申请置点</a></li>
+                <li><a href="javascript:void(0);">帮助</a></li>
+                <li><a href="javascript:void(0);">关于</a></li>
+            </ul>
+        </div>
+    </div> -->
+    <div class="clearFix" id="mainContainer" style="width: 100%;height: 100%;margin-bottom:60px;margin-left:200px;">
+        <div id="main">
+            <div class="wait-load"><span>数据加载中...</span></div>
+        </div>
+        <div class="btn btn-Screen" id="fullScreen">全屏</div>
+    </div>
+    <script src="<#$Theme['P']['js']#>/dist/echarts.js"></script>
+    <script src="<#$Theme['P']['js']#>/e-map.js"></script>
+    
+    <div class="footer">
+        <div class="footer-copyright" style="padding:10px 0;">© 2015 all-WiFi <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action" style=" color:#ccc; ">闽ICP备14001930号-2</a></div>
+    </div>
+<script src="<#$Theme['P']['js']#>/jquery.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/jquery.uniform.min.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/common.js"></script>
+<script src="<#$Theme['P']['root']#>/kindeditor/kindeditor-min.js" type="text/javascript"></script>
+<script src="<#$Theme['P']['root']#>/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.datepicker.js"></script>
+<script src="<#$Theme['P']['js']#>/region_select.js"></script>
+    <script type="text/javascript">
+    $('#fullScreen').bind('click',function(){
+        toggleFullScreen(document.getElementById("mainContainer"));
+    })
+
+    </script>
+</body>
+</html>

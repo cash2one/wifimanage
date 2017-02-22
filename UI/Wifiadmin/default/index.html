@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><#:C('sitename')#>-管理后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<include file="Pub:style"/>
+	  <link rel="stylesheet" href="http://localhost/wifimanage/UI/Public/bootadmin/css/compiled/index.css" type="text/css" media="screen" />    
+	
+<body>
+
+
+<include file="Pub:Nav"/>
+   <include file="Pub:Sidebar"/>
+
+	<!-- main container -->
+    <div class="content" style="height: 100%;">
+    	 <div class="container-fluid">
+    	 <!-- upper main stats -->
+            <div id="main-stats">
+                <div class="row-fluid stats-row">
+                    <div class="span3 stat">
+                        <div class="data">
+                        		展示中广告
+                            <span class="number" id="sumauth">0</span>
+                            		
+                        </div>
+                        <span class="date"><#$Think.now#>
+                        </span>
+                    </div>
+                    <div class="span3 stat">
+                        <div class="data">
+                       	 累计投放广告
+                            <span class="number" id="sumuser">0</span>
+                           	 次
+                        </div>
+                        <span class="date"><#$Think.now#></span>
+                    </div>
+                    <div class="span3 stat">
+                        <div class="data">
+                       		 累计浏览用户
+                            <span class="number" id="sumshopad">0</span>
+                            		次
+                        </div>
+                        <span class="date"><#$Think.now#></span>
+                    </div>
+                    <div class="span3 stat last">
+                        <div class="data">
+                        		累计点击用户
+                            <span class="number" id="sumad">0</span>
+                            人
+                        </div>
+                        <span class="date"><#$Think.now#></span>
+                    </div>
+                </div>
+            </div>
+            <!-- end upper main stats -->
+    	   <div id="pad-wrapper">
+				<div class="row-fluid">
+					<div class="alert hide fade in span11">
+		            <a class="close" data-dismiss="alert" href="#">×</a>
+		            <div id="vermsg"></div>
+		          </div>
+					
+					
+					
+
+				</div>
+				
+                <!-- statistics chart built with jQuery Flot -->
+                <div class="row-fluid chart">
+                	<div class="span6">
+                		<h4>
+                        	投放广告统计
+                       	<a id="authbtn" class="hidden"></a>
+	                    </h4>
+	                    <div class="span12">
+	                        <div id="adchart"></div>
+	                    </div>
+                	</div>
+                    
+                </div>
+    	 
+    	 </div>
+    
+          </div>
+
+
+	<!-- scripts -->
+ <script src="http://localhost/wifimanage/UI/Public/bootadmin/js"></script>
+    <script src="http://localhost/wifimanage/UI/Public/bootadmin/js/bootstrap.min.js"></script>
+    <script src="http://localhost/wifimanage/UI/Public/bootadmin/js/theme.js"></script>
+<script src="http://localhost/wifimanage/UI/Public/bootadmin/js/jquery.flot.js"></script> 
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="<#$Theme['P']['js']#>/flot/excanvas.min.js"></script><![endif]-->
+<script src="<#$Theme['T']['js']#>/index.js"></script> 
+<script>
+
+$(function(){
+	authchart('<#:U('pub/getauthrpt')#>');
+	mchart('<#:U('pub/getuserchart')#>');
+	shopad('<#:U('pub/getadrpt')#>');
+	adchar('<#:U('pub/getpubadrpt')#>');
+	getversion(<#:getvsersion()#>);
+
+});
+</script>
+</body>
+</html>

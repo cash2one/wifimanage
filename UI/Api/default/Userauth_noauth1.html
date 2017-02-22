@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>all WiFi Free</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="no">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="http://wx.ikuai8.com/resources/css/unslider.css">
+		<link rel="stylesheet" href="http://wx.ikuai8.com/resources/css/my.css">
+		<link rel="stylesheet" type="text/css" href="<#$Theme['P']['js']#>/style.css">
+	</head>
+	<body>
+		<div class="loader">
+			<div class="load-logo-1"></div>
+			<div class="load-logo-2"></div>
+			<div class="load-line">
+				<div class="load-line-bg"></div>
+				<div class="load-num" style="display:none;"><span>0</span>%</div>
+			</div>
+		</div>
+		<div class="swiperSlide" style="display:none;">
+	        <div class="swiper-container">
+	            <div class="swiper-wrapper">
+					<volist name="lists" id="vo">
+	            	<div class="swiper-slide" style="background-image: url(<#$vo.ad_thumb#>);">
+	                </div>
+					</volist>
+	            </div>
+	        </div>
+	        <div class="swiper-nav-vertical"></div>
+	        <div class="cuntdown">正在为您连接 <span>20</span>秒</div>
+	        <div class="loding" style="opacity: 0;">
+	        	<div class="tip">请稍后…………</div>
+	        </div>
+        </div>
+
+        <script src="<#$Theme['P']['js']#>/jquery.touchSwipe.transit.min.js"></script>
+        <!--<script src="<#$Theme['P']['js']#>/swiper.3dflow.min.js"></script>-->
+		<script type="text/javascript" src="http://portal.ikuai8.com/sdk/ikAuth.js?_t=<?php echo time();?>"></script>
+        <script src="<#$Theme['P']['js']#>/main.js"></script>
+
+		<script>
+			function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null)
+					return unescape(r[2]);
+				return null;
+			}
+
+			var mac		=	ikClientMac();
+			var ip		=	ikClientIp();
+			var gw_id 	=   getUrlParam("apmac");
+
+			$.ajax({
+				url: '/index.php/api/UserAuth/noauth',
+				type: "post",
+				data:{
+					'mac':mac,
+					'gw_id':gw_id
+				},
+				dataType:'jsonp',
+				success:function(){
+
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+				}
+			});
+		</script>
+
+	</body>
+</html>

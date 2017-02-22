@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><#:C('sitename')#>-管理后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<include file="Pub:style"/>
+<!-- libraries -->
+<link href="<#$Theme['P']['root']#>/bootadmin/css/lib/uniform.default.css" type="text/css" rel="stylesheet" />
+<link href="<#$Theme['P']['root']#>/bootadmin/css/lib/select2.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="<#$Theme['P']['root']#>/bootadmin/css/compiled/form-showcase.css" type="text/css" media="screen" />
+
+<body>
+
+
+<include file="Pub:Nav"/>
+<include file="Pub:Sidebar"/>
+
+<!-- main container -->
+<div class="content">
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="form-page">
+
+            <div class="row-fluid form-wrapper">
+                <div class="span12">
+                    <h4>编辑路由信息</h4>
+                </div>
+                <!-- left column -->
+                <div class="span8 column">
+                    <form name="do" method="post" action="<#:U('edit');#>">
+                        <div class="alert span9" style="display: none;">
+                            <span id="alertmsg"></span>
+                        </div>
+                        <div class="field-box">
+                            <label>路由器名称:</label>
+                            <input class="span8" type="text"  data-toggle="tooltip" data-trigger="focus" title="路由器名称不能超过20个字" data-placement="right" name="routename" id="routename" value="<#$info.routename#>"/>
+
+                        </div>
+                        <div class="field-box">
+                            <label>MAC地址:</label>
+                            <input class="span8" type="text" name="gw_id" id="gw_id" value="<#$info.gw_id#>"/>
+                        </div>
+                        <div class="field-box">
+                            <label>路由排序:</label>
+                            <input class="span8" type="text" name="sortid" id="sortid" value="<#$info.sortid#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>行业类别:</label>
+                            <volist name="enumdata.trades" id="vo">
+                                <label class="checkbox">
+                                    <input type="checkbox" value="<#$vo.key#>" name="trade" <php>if(strpos($info['trade'],"#".$vo['key']."#")>-1){echo "checked";} </php>/><#$vo.txt#>
+                                </label>
+                            </volist>
+                        </div>
+                        <div class="field-box">
+                            <label>所属商圈:</label>
+                            <div class="ui-select">
+                                <select name="province" id="province"><option value="北京市">北京市</option><option value="天津市">天津市</option><option value="河北省">河北省</option><option value="山西省">山西省</option><option value="内蒙古自治区">内蒙古自治区</option><option value="辽宁省">辽宁省</option><option value="吉林省">吉林省</option><option value="黑龙江省">黑龙江省</option><option value="上海市">上海市</option><option value="江苏省">江苏省</option><option value="浙江省">浙江省</option><option value="安徽省">安徽省</option><option value="福建省">福建省</option><option value="江西省">江西省</option><option value="山东省">山东省</option><option value="河南省">河南省</option><option value="湖北省">湖北省</option><option value="湖南省">湖南省</option><option value="广东省">广东省</option><option value="广西壮族自治区">广西壮族自治区</option><option value="海南省">海南省</option><option value="重庆市">重庆市</option><option value="四川省">四川省</option><option value="贵州省">贵州省</option><option value="云南省">云南省</option><option value="西藏自治区">西藏自治区</option><option value="陕西省">陕西省</option><option value="甘肃省">甘肃省</option><option value="青海省">青海省</option><option value="宁夏回族自治区">宁夏回族自治区</option><option value="新疆维吾尔自治区">新疆维吾尔自治区</option><option value="香港特别行政区">香港特别行政区</option><option value="澳门特别行政区">澳门特别行政区</option><option value="台湾省">台湾省</option><option value="其它">其它</option></select>
+                            </div>
+                            <div class="ui-select">
+                                <select name="city" id="city" ><option value="市辖区">市辖区</option><option value="市辖县">市辖县</option></select>
+                            </div>
+                            <div class="ui-select">
+                                <select name="area" id="area" ><option value="东城区">东城区</option><option value="西城区">西城区</option><option value="崇文区">崇文区</option><option value="宣武区">宣武区</option><option value="朝阳区">朝阳区</option><option value="丰台区">丰台区</option><option value="石景山区">石景山区</option><option value="海淀区">海淀区</option><option value="门头沟区">门头沟区</option><option value="房山区">房山区</option><option value="通州区">通州区</option><option value="顺义区">顺义区</option><option value="昌平区">昌平区</option><option value="大兴区">大兴区</option><option value="怀柔区">怀柔区</option><option value="平谷区">平谷区</option></select>
+
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>地址:</label>
+                            <input class="span8" type="text"  data-toggle="tooltip" data-trigger="focus" title="输入商铺所在地址" data-placement="right" name="gw_address" id="gw_address" value="<#$info.gw_address#>"/>
+                        </div>
+
+                        <div class="field-box ">
+                            <input type="hidden" name="id" id="id" value="<#$info.id#>">
+                            <input type="button"   class="btn-glow primary "  id="btn_save" value="确认编辑">
+                            &nbsp;&nbsp;
+                            <input type="button"   class="btn-glow  " id="btn_back" value="返回列表">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- right column -->
+                <div class="span4 column pull-right">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- scripts -->
+<script src="<#$Theme['P']['js']#>/jquery.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/jquery.uniform.min.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/common.js"></script>
+<script src="<#$Theme['P']['js']#>/region_select.js"></script>
+
+<!-- call this page plugins -->
+<script type="text/javascript">
+
+    new PCAS('province', 'city', 'area', '<#$info['province']#>', '<#$info.city#>', '<#$info.area#>');
+    $(function () {
+
+        // add uniform plugin styles to html elements
+        $("input:checkbox, input:radio").uniform();
+        $('#btn_back').bind('click',function(){
+            location.href="<#:U('index')#>";
+        });
+        $('#btn_save').bind('click',function(){
+            var routename=$('#routename').val();
+            var gw_id=$('#gw_id').val();
+            var pro=$('#province').val();
+            var city=$('#city').val();
+            var area=$('#area').val();
+            var ad=$('#gw_address').val();
+            var sortid=$('#sortid').val();
+
+            if(routename == ""){
+                AlertTips("路由名称不能为空",1500);
+                return false;
+            }
+            if(gw_id == ""){
+                AlertTips("MAC不能为空",1500);
+                return false;
+            }
+            if(pro == ""){
+                AlertTips("省份不能为空",1500);
+                return false;
+            }
+            if(city == ""){
+                AlertTips("城市不能为空",1500);
+                return false;
+            }
+            if(area == ""){
+                AlertTips("区域不能为空",1500);
+                return false;
+            }
+            if(ad == ""){
+                AlertTips("地址不能为空",1500);
+                return false;
+            }
+            if(sortid == ""){
+                AlertTips("路由排序不能为空",1500);
+                return false;
+            }
+            var trade="";
+            $("input[name='trade']").each(function(){
+                if($(this).parent().hasClass('checked')){
+                    trade+="#"+$(this).val()+"#";
+                }
+            });
+            $.ajax({
+                url: '<#:U('edit')#>',
+                type: "post",
+                data:{
+                    'id':$('#id').val(),
+                    'routename':routename,
+                    'gw_id':gw_id,
+                    'province':pro,
+                    'city':city,
+                    'area':area,
+                    'gw_address':ad,
+                    'trade':trade,
+                    'sortid':sortid,
+                },
+                dataType:'json',
+                error:function(){
+
+                    AlertTips("服务器忙，请稍候再试",1500);
+                },
+                success:function(data){
+                    if(data.error==0){
+                        location.href=data.url;
+                    }else{
+                        AlertTips(data.msg,200000);
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

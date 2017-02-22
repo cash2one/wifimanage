@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+
+    <meta charset="utf8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" >
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    
+
+   <title>无标题文档</title>
+
+	<link rel="stylesheet" href="/resources/css/unslider.css">
+	<link rel="stylesheet" href="/resources/css/my.css">
+	
+	<script type="text/javascript" src="/resources/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/resources/js/unslider.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery.event.move.js"></script>
+	<script type="text/javascript" src="http://portal.ikuai8.com/sdk/ikAuth.js?_t=<?php echo time();?>"></script>
+	
+	
+	<script type="text/javascript">
+		$(function() {
+			$('.banner').unslider({
+				speed: 500,               //  滚动速度
+				delay: 3000,              //  动画延迟
+				complete: function() {},  //  动画完成的回调函数
+				keys: true,               //  启动键盘导航
+				dots: true,               //  显示点导航
+				fluid: true,            //  支持响应式设计
+				
+			});
+		});
+		
+		$(document).ready(function(){
+			var slides = jQuery('.slides il'),i = 0;
+			
+			slides
+			.on('swipeleft', function(e) {
+			  slides.eq(i + 1).addClass('active');
+			})
+			.on('swiperight', function(e) {
+			  slides.eq(i - 1).addClass('active');
+			});
+		});
+		
+		
+		var secs =5; //倒计时的秒数
+		function Load(){ 
+		 
+			for(var i=secs;i>=0;i--) 
+			{ 
+				window.setTimeout('doUpdate(' + i + ')', (secs-i) * 1000); 
+			} 
+		} 
+		function doUpdate(num) 
+		{ 
+			document.getElementById('tim').innerHTML = num ; 
+			if(num == 0) { 
+				ik.core.isReady(function(){
+					ikLogin();
+				});
+			} 
+		} 
+		Load(); 
+	</script>
+
+	<style>
+		.time{
+			 position:relative; 
+			 z-index:200;
+			 left:0; 
+			 right:0; 
+			 
+			 height:30px; 
+			 width:100%;
+			 
+			 color:#FFF;
+			 line-height:30px;
+			 font-size:14px;
+			 text-indent:1em;
+			 
+			 background-color:rgba(0, 0, 0, 0.6);
+			 
+		}
+		@media(max-width:600px) {
+			.time{position:absolute; text-indent:3em;
+		}
+	</style>
+</head>
+
+<body class="bodyBA">
+
+<div class="time">
+	还剩&nbsp;<span style=" font-size:20px; color:#fa6a5b;" id="tim">1</span>&nbsp;秒
+</div>
+
+<div class="banner">
+    <ul class="slides">
+        <li >
+        	<a href="#"><img src="/resources/images/02.jpg" /></a>
+        </li>
+
+    </ul>
+</div>
+
+
+</body>
+</html>

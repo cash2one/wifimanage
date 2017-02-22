@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><#:C('sitename')#>-管理后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable=no />
+<style type="text/css">
+    #allmap{width: 85%;height: 300px; margin:0;font-family:"微软雅黑";}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=nGa1MmrYfdZGeaQ5MTQtVkyu"></script>
+<include file="Pub:style"/>
+<!-- libraries -->
+<link href="<#$Theme['P']['root']#>/bootadmin/css/lib/uniform.default.css" type="text/css" rel="stylesheet" />
+<link href="<#$Theme['P']['root']#>/bootadmin/css/lib/select2.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="<#$Theme['P']['root']#>/bootadmin/css/compiled/form-showcase.css" type="text/css" media="screen" />
+
+<body>
+
+
+<include file="Pub:Nav"/>
+<include file="Pub:Sidebar"/>
+
+<!-- main container -->
+<div class="content">
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="form-page">
+
+            <div class="row-fluid form-wrapper">
+                <div class="span12">
+                    <h4>编辑路由备注</h4>
+                </div>
+                <!-- left column -->
+                <div class="span8 column">
+                    <form name="" method="post" action="<#:U('info');#>">
+                        <div class="alert span9" style="display: none;">
+                            <span id="alertmsg"></span>
+                        </div>
+                        <div class="field-box">
+                            <label>路由名称:</label>
+                            <input class="span8" type="text"  data-toggle="tooltip" data-trigger="focus" title="商户名称不能超过20个字" data-placement="right" value="<#$routeinfo.routename#>"/>
+                            <input type="hidden" name="id" id="id" value="<#$routeinfo.id#>">
+                            <input type="hidden" name="routeid" id="routeid" value="<#$routeinfo.routeid#>">
+                        </div>
+                        <div class="field-box">
+                            <label>设备名称:</label>
+                            <input class="span8" type="text" name="eqname" id="eqname" value="<#$routeinfo.eqname#>"/>
+                        </div>
+                        <div class="field-box">
+                            <label>设备厂家:</label>
+                            <input class="span8" type="text" name="eqfactory" id="eqfactory" value="<#$routeinfo.eqfactory#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>设备型号:</label>
+                            <input class="span8" type="text" name="eqmodel" id="eqmodel" value="<#$routeinfo.eqmodel#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>SSID:</label>
+                            <input class="span8" type="text" name="ssid" id="ssid" value="<#$routeinfo.ssid#>" />
+                        </div>
+
+                        <div class="field-box">
+                            <label>是否2G/3G室分共用:</label>
+                            <div class="span8">
+                                <label class="radio">
+                                    <input type="radio" name="net" value="是" <eq name="routeinfo['net']" value="是">checked</eq>>是
+                                    <input type="radio" name="net" value="否" <eq name="routeinfo['net']" value="否">checked</eq>>否
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>AP覆盖技术:</label>
+                            <div class="span8">
+                                <label class="radio">
+                                    <input type="radio" name="apcover" value="室内分布" <eq name="routeinfo['apcover']" value="室内分布">checked</eq>>室内分布
+                                    <input type="radio" name="apcover" value="室内放装" <eq name="routeinfo['apcover']" value="室内放装">checked</eq>>室内放装
+                                    <input type="radio" name="apcover" value="室外型" <eq name="routeinfo['apcover']" value="室外型">checked</eq>>室外型
+                                    <input type="radio" name="apcover" value="WOC" <eq name="routeinfo['apcover']" value="WOC">checked</eq>>WOC
+                                    <input type="radio" name="apcover" value="室分合路" <eq name="routeinfo['apcover']" value="室分合路">checked</eq>>室分合路
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>AP放置类型:</label>
+                            <div class="span8">
+                                <label class="radio">
+                                    <input type="radio" name="apsettype" value="室分合路型" <eq name="routeinfo['apsettype']" value="室分合路型">checked</eq>>室分合路型
+                                    <input type="radio" name="apsettype" value="室内放装型" <eq name="routeinfo['apsettype']" value="室内放装型">checked</eq>>室内放装型
+                                    <input type="radio" name="apsettype" value="室外型" <eq name="routeinfo['apsettype']" value="室外型">checked</eq>>室外型
+                                    <input type="radio" name="apsettype" value="放装型" <eq name="routeinfo['apsettype']" value="放装型">checked</eq>>放装型
+                                    <input type="radio" name="apsettype" value="室内合路型" <eq name="routeinfo['apsettype']" value="室内合路型">checked</eq>>室内合路型
+                                    <input type="radio" name="apsettype" value="室分放装型" <eq name="routeinfo['apsettype']" value="室分放装型">checked</eq>>室分放装型
+                                    <input type="radio" name="apsettype" value="室内型" <eq name="routeinfo['apsettype']" value="室内型">checked</eq>>室内型
+                                    <input type="radio" name="apsettype" value="室内放置型" <eq name="routeinfo['apsettype']" value="室内放置型">checked</eq>>室内放置型
+                                    <input type="radio" name="apsettype" value="室内分布" <eq name="routeinfo['apsettype']" value="室内分布">checked</eq>>室内分布
+                                    <input type="radio" name="apsettype" value="室内放装" <eq name="routeinfo['apsettype']" value="室内放装">checked</eq>>室内放装
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>交换机名称:</label>
+                            <input class="span8" type="text" name="switchname" id="switchname" value="<#$routeinfo.switchname#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>后备电源:</label>
+                            <input class="span8" type="text" name="backuppower" id="backuppower" value="<#$routeinfo.backuppower#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>设备状态:</label>
+                            <input class="span8" type="text" name="state" id="state" value="<#$routeinfo.state#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>AP类型:</label>
+                            <div class="span8">
+                                <label class="radio">
+                                    <input type="radio" name="aptype" value="胖" <eq name="routeinfo['aptype']" value="胖">checked</eq>>胖
+                                    <input type="radio" name="aptype" value="瘦" <eq name="routeinfo['aptype']" value="瘦">checked</eq>>瘦
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>信道:</label>
+                            <input class="span8" type="text" name="nobumichi" id="nobumichi" value="<#$routeinfo.nobumichi#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>功率:</label>
+                            <input class="span8" type="text" name="power" id="power" value="<#$routeinfo.power#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>是否干放:</label>
+                            <div class="span8">
+                                <label class="radio">
+                                    <input type="radio" name="trunk_amplifier" value="是" <eq name="routeinfo['trunk_amplifier']" value="是">checked</eq>>是
+                                    <input type="radio" name="trunk_amplifier" value="否" <eq name="routeinfo['trunk_amplifier']" value="否">checked</eq>>否
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>所属OUNMAC地址:</label>
+                            <input class="span8" type="text" name="ounmac" id="ounmac" value="<#$routeinfo.ounmac#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>所属OUN端口:</label>
+                            <input class="span8" type="text" name="ounport" id="ounport" value="<#$routeinfo.ounport#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>所属控制AC:</label>
+                            <input class="span8" type="text" name="cac" id="cac" value="<#$routeinfo.cac#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>软件版本号:</label>
+                            <input class="span8" type="text" name="ver" id="ver" value="<#$routeinfo.ver#>" />
+                        </div><div class="field-box">
+                            <label>SNMP访问的读团体名:</label>
+                            <input class="span8" type="text" name="snmprname" id="snmprname" value="<#$routeinfo.snmprname#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>SNMP访问的写团体名:</label>
+                            <input class="span8" type="text" name="snmpwname" id="snmpwname" value="<#$routeinfo.snmpwname#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>设备IP地址:</label>
+                            <input class="span8" type="text" name="eqip" id="eqip" value="<#$routeinfo.eqip#>" />
+                        </div>
+                        <div class="field-box">
+                            <label>设备IP掩码:</label>
+                            <input class="span8" type="text" name="eqmask" id="eqmask" value="<#$routeinfo.eqmask#>" />
+                        </div>
+                </div><div class="field-box">
+                            <label>设备IP网关:</label>
+                            <input class="span8" type="text" name="eqgateway" id="eqgateway" value="<#$routeinfo.eqgateway#>" />
+                        </div>
+
+                        <div class="field-box ">
+                            <input type="submit"   class="btn-glow primary "  id="btn_save" value="确认编辑">
+                            &nbsp;&nbsp;
+                            <input type="button"   class="btn-glow  " id="btn_back" value="返回列表">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- right column -->
+                <div class="span4 column pull-right">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- scripts -->
+<script src="<#$Theme['P']['js']#>/jquery.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/jquery.uniform.min.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/common.js"></script>
+<script src="<#$Theme['P']['js']#>/region_select.js"></script>
+<script type="text/javascript">
+    new PCAS('province', 'city', 'area', '<#$shop['province']#>', '<#$shop.city#>', '<#$shop.area#>');
+</script>
+<!-- call this page plugins -->
+<script type="text/javascript">
+
+
+    $(function () {
+
+        // add uniform plugin styles to html elements
+        $("input:checkbox, input:radio").uniform();
+        $('#btn_back').bind('click',function(){
+            location.href="<#:U('index')#>";
+        });
+    });
+</script>
+</body>
+</html>

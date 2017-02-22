@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" >
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" type="text/css" href="<#$Theme['P']['css']#>/style.css">
+    <title>路由认证</title>
+    <script src="<#$Theme['P']['js']#>/jquery-1.8.3.min.js"></script>
+    <script src="<#$Theme['P']['js']#>/unslider.js"></script>
+    <script src="<#$Theme['P']['js']#>/jquery.event.move.js"></script>
+    <script type="text/javascript" src="http://portal.ikuai8.com/sdk/ikAuth.js?_t=<?php echo time();?>"></script>
+ <!--   <script type="text/javascript">
+        $(function() {
+            $('.banner').unslider({
+                speed: 500,               //  滚动速度
+                delay: 3000,              //  动画延迟
+                complete: function() {},  //  动画完成的回调函数
+                keys: true,               //  启动键盘导航
+                dots: true,               //  显示点导航
+                fluid: true,              //支持响应式设计
+            });
+        });
+
+        $(document).ready(function(){
+            var slides = jQuery('.slides il'),i = 0;
+            slides
+                    .on('swipeleft', function(e) {
+                        slides.eq(i + 1).addClass('active');
+                    })
+                    .on('swiperight', function(e) {
+                        slides.eq(i - 1).addClass('active');
+                    });
+        });
+    </script>-->
+</head>
+<body>
+<!--
+<div class="banner">
+    <ul class="slides">
+        <li >
+            <a href="#"><img src="/resources/images/01.jpg" /></a>
+        </li>
+        <li>
+            <a href="#"><img src="/resources/images/01.jpg" /></a>
+        </li>
+        <li>
+            <a href="#"><img src="/resources/images/01.jpg" /></a>
+        </li>
+    </ul>
+</div>
+
+<div class="H10"></div>
+
+<div class="clearfix">
+    <div class="landBG">
+        <div class="landBA">
+            <div  class="landBB" >
+                <img class="fl" src="<#$Theme['P']['img']#>/wifilogo.png" width="38px" />
+                <p class="fl" >登录上网</p>
+            </div>
+        </div>
+    </div>
+    <div class="H10"></div>
+    <ul class="lands">
+        <li>
+            <div class="fc">
+                <a class="l-QQ" href="javascript:void(-1);" id="btnAuthQQ"><span><img src="/resources/images/qq_bg.png" /></span>QQ认证</a>
+            </div>
+        </li>
+        <li>
+            <div class="fc">
+                <a class="l-weibo" href="javascript:void(-1);" id="btnAuthWeibo"><span><img src="/resources/images/weibo_bg.png" /></span>微博认证</a>
+            </div>
+        </li>
+
+    </ul>
+    <div class="H10" style=" border-bottom:1px solid #b5b5b5"></div>
+</div>
+-->
+
+<div class="all">
+    <form name="" action="">
+        <div class="m-logo"><img src="<#$Theme['P']['img']#>/m-logo.png" /></div>
+        <div class="button">
+            <div class="m-input tel"> <img src="<#$Theme['P']['img']#>/m-input.png" style="opacity: 0;" /> <img src="<#$Theme['P']['img']#>/m-input.png" class="get-code-bg" />
+                <input type="text" name="telephone" id="telephone" placeholder="请输入手机号" />
+                <div id="user_code_div_node"></div>
+                <div class="get-code"><img src="<#$Theme['P']['img']#>/m-code.png" onclick="getPwd();" id="_getPwdSubmit" /></div>
+            </div>
+            <div class="m-input code"> <img src="<#$Theme['P']['img']#>/m-input.png" />
+                <input type="text" name="user_code" id="_pwd" placeholder="请输入验证码" />
+            </div>
+            <div class="m-button"><img src="<#$Theme['P']['img']#>/m-button.png" onclick="smsLogin(2);" /></div>
+        </div>
+    </form>
+    <div class="bottom">本技术由allWiFi提供</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        //QQ认证
+        $("#btnAuthQQ").click(function(){
+            ikQQLogin();
+        });
+        //微博认证
+        $("#btnAuthWeibo").click(function(){
+            ikWeiboLogin();
+        });
+    });
+    /**
+     * 登录认证、预留信息
+     */
+    function smsLogin(type){
+        if(clickFlag) {
+            alert('登录中，请不要重复点击');
+            return false;
+        }
+
+        if ($("#telephone").val()==""){return false;}
+        //登录信息
+        loginUsername = $("#telephone").val().trim();
+        var pwd = $("#_pwd").val().trim();
+        if(pwd != '****') { loginPassword = pwd; }
+        if(loginUsername == ""){
+            $('#user_code_div_node').html("手机号不能为空");
+            return;
+        }
+        if(loginPassword == ""){
+            $('#user_code_div_node').html("密码不能为空");
+            return;
+        }
+
+        var resString = 'username='+loginUsername+'&password='+loginPassword;
+        $.ajax({
+            type: "post",
+            url: "http://wx.4sh.cn/ikuaiprotal/smslogin.php",
+            dataType: "jsonp",
+            data:resString,//参数
+            jsonp:"jsonpcallback",
+            jsonpCallback:"res_info",
+            success: function(json){
+                var state = json[0].state;
+                if (state==0){alert('账号或密码错误');}else{ikLogin();}
+            }
+        });
+
+        $('.btn_res, .but_logon').val('连接中……').css('background', '#B6AFB0');
+
+        //上报登录状态，返回errId后执行登录
+        //login();
+    }
+
+
+
+    /**
+     * 发送短信
+     */
+    var waites=120;
+    var getPwd=function(){
+        var telephone=$("#telephone").val();	//手机号码
+        var reg = /^1[3|4|5|8|7][0-9]\d{8}$/;
+        $('#user_code_div_node').html('');
+        if(!reg.test(telephone)){
+            $('#user_code_div_node').html('请输入正确的手机号码');
+            return false;
+        }
+
+        //查询用户预留信息
+        $.ajax({
+            type: "post",
+            //url: "http://wx.4sh.cn/ikuaiprotal/smslogin.php",
+            url:"<#:U('portalmsg')#>",
+            dataType: "jsonp",
+            data:'username='+telephone+'&act=chk',//参数
+            jsonp:"jsonpcallback",
+            jsonpCallback:"res_info",
+            success: function(json){
+                var res_info = json[0].res_info;
+                var password = json[0].password;
+                if(json[0].state == 1) {
+                    alert('该账号已通过验证，可直接登录');
+                    loginPassword = password;
+                    $('#_pwd').val('****');
+
+
+
+                    if(res_info != 'null'){
+                        $('#res_info_input_login').val(res_info);
+                    }
+                } else {
+                    var ip		=	ikClientIp();
+                    var mac		=	ikClientMac();
+                    var apmac	=	ikRouterGwid();
+
+                    $.post("sms.php",{'telephone':telephone,'mac':mac,'ip':ip,'apmac':apmac},function(result){
+                        if(result){	//获取动态密码成功：短信发送成功
+                            $('#user_code_div_node').html('短信发送成功！');
+                        }else{	//失败
+                            $('#user_code_div_node').html('短信发送失败！');
+                        }
+                    });
+                    getpassword();
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(XMLHttpRequest.responseText);
+                alert(textStatus);
+            }
+        });
+    }
+
+    function getpassword() {
+        if (waites == 0) {
+            $('.but_yzm').css({'background': '#E60012'});
+            $('.but_yzm').val('重新获取');
+            waites = 120;
+        } else {
+            $('.but_yzm').css({'background': '#ccc'});
+            $('.but_yzm').val('('+waites+')重新获取');
+            waites--;
+            setTimeout(function() {
+                        getpassword()
+                    },
+                    1000);
+        }
+    }
+</script>
+</body>
+</html>

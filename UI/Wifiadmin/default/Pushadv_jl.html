@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><#:C('sitename')#>-管理后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<include file="Pub:style"/>
+<!-- libraries -->
+<link href="<#$Theme['P']['root']#>/bootadmin/css/compiled/tables.css" type="text/css" rel="stylesheet"  />
+<link  href="<#$Theme['P']['root']#>/kindeditor/themes/default/default.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="<#$Theme['P']['root']#>/bootadmin/css/compiled/form-showcase.css" type="text/css" media="screen" />
+<link href="<#$Theme['P']['root']#>/bootadmin/css/lib/uniform.default.css" type="text/css" rel="stylesheet" />
+<link href="<#$Theme['P']['root']#>/bootadmin/css/lib/select2.css" type="text/css" rel="stylesheet" />
+<body>
+<include file="Pub:Nav"/>
+<include file="Pub:Sidebar"/>
+
+<form name="doad" action="__URL__/index" method="post" enctype="multpart/form-data" id="search_form">
+    <!-- main container -->
+    <div class="content" style="height: 100%;">
+        <div id="pad-wrapper">
+                <h4>
+                   推送广告记录 <small></small>
+                </h4>
+        </div>
+        <div id="pad-wrapper">
+            <!-- orders table -->
+            <div class="table-wrapper orders-table section">
+                <div class="">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <!-- <th class="col-md-2"> <span class="line"></span> ap名称 </th>
+                            <th class="col-md-2"> <span class="line"></span> 热点名称 </th>
+                            <th class="col-md-2"> <span class="line"></span> 区域 </th>
+                            <th class="col-md-2"> <span class="line"></span> 行业 </th>
+                            <th class="col-md-2"> <span class="line"></span> APMAC </th>
+                            <th class="col-md-2"> <span class="line"></span> AP坐标 </th> -->
+                            <th class="col-md-2"> <span class="line"></span> 推送广告时间</th>
+                            <th class="col-md-2"> <span class="line"></span> 推送广告位置</th>
+                            <th class="col-md-2"> <span class="line"></span> 推送区域</th>
+                            <th class="col-md-2"> <span class="line"></span> 推送行业</th>
+                            <th class="col-md-2"> <span class="line"></span> 推送广告名称</th>
+                            <th class="col-md-2"> <span class="line"></span> 操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="result" id="vo">
+                            <!-- <td><#$vo['routename']#></td>
+                            <td><#$vo['shopname']#></td>
+                            <td><#$vo['area']#></td>
+                            <td><#$vo['trade']#></td>
+                            <td><#$vo['gw_id']#></td>
+                            <td><#$vo['lat']#>,<#$vo['lng']#></td> -->
+                            <td><#$vo['times']|date='Y-m-d H:i:s',####></td>
+                            <td><#$vo['ad_pos']#></td>
+                            <td><#$vo['area']#></td>
+                            <td><#$vo['trade']#></td>
+                            <td><#$vo['title']#></td>
+                            <td><a href="<#:U('xx',array('time'=>$vo['times']))#>">查看详细</a></td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    <div class="pagination pull-right"> <#$page#> </div>
+                </div>
+            </div>
+            <!-- end orders table -->
+        </div>
+    </div>
+</form>
+
+<!-- scripts -->
+<script src="<#$Theme['P']['js']#>/jquery.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/jquery.uniform.min.js"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/common.js"></script>
+<script src="<#$Theme['P']['root']#>/kindeditor/kindeditor-min.js" type="text/javascript"></script>
+<script src="<#$Theme['P']['root']#>/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.datepicker.js"></script>
+<script src="<#$Theme['P']['js']#>/region_select.js"></script>
+</body>
+</html>

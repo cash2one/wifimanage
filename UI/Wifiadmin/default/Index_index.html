@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><#:C('sitename')#>-管理后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<include file="Pub:style"/>
+	  <link rel="stylesheet" href="<#$Theme['P']['root']#>/bootadmin/css/compiled/index.css" type="text/css" media="screen" />    
+	
+<body>
+
+
+<include file="Pub:Nav"/>
+   <include file="Pub:Sidebar"/>
+
+	<!-- main container -->
+    <div class="content" style="height: 100%;">
+    	 <div class="container-fluid">
+    	 <!-- upper main stats -->
+            <div id="main-stats">
+                <div class="row-fluid stats-row">
+                    <div class="span3 stat">
+                        <div class="data">
+                        		展示中广告
+                           <a href="../ad/online"> <span class="number" id="sumauth"><#$adonline#></span></a>
+                            		
+                        </div>
+                        <span class="date"><#$Think.now#>
+                        </span>
+                    </div>
+                    <div class="span3 stat">
+                        <div class="data">
+                       	 累计投放广告
+                            <span class="number" id="sumuser"><#$adcount#></span>
+                           	 次
+                        </div>
+                        <span class="date"><#$Think.now#></span>
+                    </div>
+                    <div class="span3 stat">
+                        <div class="data">
+                       		 累计浏览用户
+                            <span class="number" id="sumshopad"><#$adshowup#></span>
+                            次
+                        </div>
+                        <span class="date"><#$Think.now#></span>
+                    </div>
+                    <div class="span3 stat last">
+                        <div class="data">
+                        		累计点击用户
+                            <span class="number" id="sumad"><#$adhit#></span>
+                            人
+                        </div>
+                        <span class="date"><#$Think.now#></span>
+                    </div>
+                </div>
+            </div>
+            <!-- end upper main stats -->
+    	   <div id="pad-wrapper">
+				<div class="row-fluid">
+					<div class="alert hide fade in span11">
+		            <a class="close" data-dismiss="alert" href="#">×</a>
+		            <div id="vermsg"></div>
+		          </div>
+					
+					
+					
+
+				</div>
+				
+                <!-- statistics chart built with jQuery Flot -->
+                <div class="row-fluid chart">
+                	<div class="span6">
+                		<h4>
+                        	投放广告统计
+                       	<a id="authbtn" class="hidden"></a>
+	                    </h4>
+	                    <div class="span12">
+	                        <div id="adchart"></div>
+	                    </div>
+                	</div>
+                    
+                </div>
+
+    	 
+    	 </div>
+    
+          </div>
+          <div class="span8">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>历史统计</th>
+                <th>广告展示次数</th>
+                <th>访问次数</th>
+                <th>点击次数</th>
+                <th>点击率</th>
+              </tr>
+            </thead>
+            <tbody id="gridbox">
+            </tbody>
+          </table>
+        </div>
+
+</div>
+	<!-- scripts -->
+ <script src="<#$Theme['P']['js']#>/jquery.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+<script src="<#$Theme['P']['js']#>/flot/jquery.flot.js"></script> 
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="<#$Theme['P']['js']#>/flot/excanvas.min.js"></script><![endif]-->
+<script src="<#$Theme['T']['js']#>/index.js"></script> 
+<script>
+
+$(function(){
+	//authchart('<#:U('pub/getauthrpt')#>');
+	//mchart('<#:U('pub/getuserchart')#>');
+	//shopad('<#:U('pub/getadrpt')#>');
+	//adchar('<#:U('pub/getpubadrpt')#>');
+    $.ajax({
+            url: '<#:U('pub/getpubadrpt')#>',
+            type: "get",
+            data:{
+                'mode':'history',
+                },
+            dataType:'json',
+            error:function(){
+                    AlertTips("服务器忙，请稍候再试",2000);
+                    },
+            success:function(data){
+                    var bt=[];
+                    var bt_hit=[];
+                    var bt_count=[];
+                    data=eval(data);
+                    for(var vo in data){
+                        
+                        bt.push([data[vo].t,data[vo].showup]);
+                        bt_count.push([data[vo].t,data[vo].count]);
+                        bt_hit.push([data[vo].t,data[vo].hit]);
+                        
+                    }
+                    var dataset=[{label:"广告展示",data:bt},{label:"访问人数",data:bt_count},{label:"广告点击",data:bt_hit}];
+                     $.plot($("#adchart"), dataset, {grid: { hoverable: true, clickable: true, borderColor:'#000',borderWidth:1},xaxis:{ticks:hourlist},series:{lines:{fill:true, show: true}, points:
+                        { show: true,
+                              }}});
+                    rendertable(data);
+            }
+        });
+	//getversion(<#:getvsersion()#>);
+    var previousPoint = null;
+    $("#adchart").bind("plothover", function (event, pos, item) {
+        if (item) {
+              if (previousPoint != item.dataIndex) {
+                  previousPoint = item.dataIndex;
+                  
+                  $('#tooltip').fadeOut(200,function(){
+                        $(this).remove();
+                    });
+                  var x = item.datapoint[0].toFixed(2),
+                        y = item.datapoint[1].toFixed(2);
+                      
+                  maruti.flot_tooltip(item.pageX, item.pageY, y+"次");
+              }
+              
+          } else {
+                $('#tooltip').fadeOut(200,function(){
+                        $(this).remove();
+                    });
+              previousPoint = null;           
+        }   
+    });   
+    maruti = {
+            // === Tooltip for flot charts === //
+            flot_tooltip: function(x, y, contents) {
+                
+                $('<div id="tooltip">' + contents + '</div>').css( {
+                    top: y + 5,
+                    left: x + 5
+                }).appendTo("body").fadeIn(200);
+            }
+    }
+
+});
+
+function rendertable(data){
+    
+    $("#gridbox").empty();
+    var trHtml="";
+    var sumshow=0;
+    var sumhit=0;
+    var sumcount=0;
+    for(var vo in data){
+        sumshow+=parseFloat( data[vo].showup);
+        sumhit+=parseFloat(data[vo].hit);
+        sumcount+=parseFloat(data[vo].count);
+    }
+    trHtml+="<tr>";
+    trHtml+="<td>合计：</td>";
+    trHtml+="<td>"+sumshow+"次</td>";
+    trHtml+="<td>"+sumcount+"次</td>";
+    trHtml+="<td>"+sumhit+"次</td>";
+    trHtml+="<td>"+(sumhit/sumshow)+"%</td>";
+    trHtml+="</tr>";
+    $("#gridbox").append(trHtml);
+}
+</script>
+</body>
+</html>

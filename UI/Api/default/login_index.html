@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta charset="UTF-8">
+    <title><#$shopinfo[0]['shopname']#></title>
+    <link rel="stylesheet" href="<#$Theme['T']['css']#>/new-login/normalize.css"/>
+    <link rel="stylesheet" href="<#$Theme['T']['css']#>/new-login/meida.css"/>
+    <link rel="stylesheet" href="<#$Theme['T']['css']#>/new-login/main.css"/>
+    <link rel="stylesheet" href="<#$Theme['T']['css']#>/new-login/icon/iconfont.css"/>
+</head>
+<body>
+<div class="clear header"><img src="<#$Theme['P']['root']#>/images/login/logo_850.png" alt="ALL-WIFI"/></div>
+<div class="header-bg"><img src="<#$Theme['P']['root']#>/images/login/bg.png" alt=""/></div>
+<div class="container">
+    <div style="padding-top:2em;">
+        <div class="btn btn-login"><a href="<#:U('userauth/mobile')#>"><span class="iconfont icon-phone"></span>手机验证</a></div>
+        <div class="btn btn-login"><a href="<#:U('userauth/wxauth')#>"><span class="iconfont icon-wechat"></span>微信验证</a></div>
+        <div class="btn btn-login"><a href="<#:U('userauth/noAuth?cate_id=1&status=1')#>"><span class="iconfont icon-ad"></span>一键上网</a></div>
+    </div>
+</div>
+<div class="footer"><#$shopinfo[0]['shopname']#>为您提供安全免费的上网服务</div>
+
+</body>
+</html>

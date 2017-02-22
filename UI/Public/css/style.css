@@ -1,0 +1,47 @@
+html{height:100%}
+*,*:after,*:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:0;margin:0}
+.clearfix:after{content:"";display:table;clear:both}
+a{text-decoration:none}
+body { text-align: center; background-color: #2F9CD4;  }
+
+/* -------- */
+.all { position: absolute; height: 100%; width: 100%; top: 0; left: 0; background-image: url(../images/bg.jpg); background-position: center; background-size: cover; text-align: center;}
+.title img, .button img, .bottom img, .m-logo img { width: 100%; height: auto; display: block;}
+.title { margin: 10% auto 0; width: 80%;}
+.icon { margin: 10% auto 0; width: 10%; height: auto; display: block;}
+.button { margin: 10% auto; width: 70%;}
+.button-sub { width: 100%; margin: 20px 0 0 0; }
+.tip { width: 100%; margin-top: 5px; color: #fff; }
+.bottom { width: 40%; position: absolute; left: 30%; bottom: 20px; color: #fff; font-size: 12px; }
+.m-logo { margin: 15% auto; width: 40%; }
+.m-input { position: relative;}
+.m-input input[type=text] { position: absolute; width: 90%; height: 80%; left: 5%; top: 5%; border: none; background: none; text-align: center; z-index: 15;}
+.m-input.tel { margin-bottom: 15%; }
+.m-input.code { margin-bottom: 7%; }
+.get-code { position: absolute; width: 35%; right: 5%; top: 80%; z-index: 2; }
+.get-code-bg { position: absolute; top: 0; left: 0; z-index: 9; }
+.wechat-txt {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    margin: 10% auto;
+    width: 70%;
+    padding: 10px;
+    font-size: 14px;
+    color: #848484;
+    -webkit-box-shadow: 2.5px 4.33px 5px 0px rgba( 0, 0, 0, 0.5 );
+    -moz-box-shadow: 2.5px 4.33px 5px 0px rgba( 0, 0, 0, 0.5 );
+    box-shadow: 2.5px 4.33px 5px 0px rgba( 0, 0, 0, 0.5 );
+}
+.wechat-txt .wx-name {
+    font-size: 20px;
+    color: #2f9cd4;
+    padding: 10px 0;
+}
+
+
+
+@media screen and (min-width:640px){
+    .all { width: 640px; left: 50%; margin-left: -320px; }
+}

@@ -1,0 +1,166 @@
+html{height:100%}
+*,*:after,*:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:0;margin:0}
+.clearfix:after{content:"";display:table;clear:both}
+a{text-decoration:none}
+body{background-color: #ebeaf0;}
+div.clear {
+    clear: both;
+}
+
+.ad_card {
+    margin: 0 3% 10px;
+    overflow: hidden;
+    -webkit-border-top-left-radius: 10px;
+            border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+            border-top-right-radius: 10px;
+    -webkit-box-shadow: 2px 3px #b3b0b3;
+            box-shadow: 2px 3px #b3b0b3;
+}
+
+.ad_card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.linkIcon {
+    display: block;
+    width: 25%;
+    float: left;
+    margin: 7px 4.16%;
+}
+
+.linkIcon img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.Top {
+    height: 39px;
+    background-color: #fff;
+    text-align: center;
+    padding-top: 7px;
+    padding-left: 7px;
+}
+
+.topLogo {height: 25px; width: auto; display: block; float: left;}
+
+.Index_Content {
+    height: 95px;
+    width: 100%;
+    border-bottom: 1px dashed #CAC6C6;
+    border-top: 1px dashed #CAC6C6;
+    padding-top: 10px;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.Index_Content img {
+    position: relative;
+    float: left;
+}
+.Content_Icon {
+    margin-left: 15px;
+    border: 1px solid #FFF;
+    border-radius: 12px;
+    height: 75px;
+    width: 75px;
+}
+.Index_Content_details {
+/*    width: 50%;*/
+    height: 49px;
+    position: relative;
+    float: left;
+    margin-left: 13px;
+}
+.Index_Content_AppName {
+    font-size: 14px;
+    color: #44423C;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+.Index_Content_details .list_app_info {
+    height: 36px;
+    font-size: 11px;
+    color: #696864;
+    text-align: left;
+    position: relative;
+    margin-top: 3px;
+}
+.Index_Content_details .list_app_info div {
+    position: relative;
+    float: left;
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.Index_Content_details .list_app_info img {
+    width: 5px;
+    height: 5px;
+    margin-top: 7px;
+    margin-left: 6px;
+    margin-right: 4px;
+    position: relative;
+    float: left;
+}
+.video .list_app_info { margin-top: 10px; }
+.video .list_app_info .play {
+    width: 12px;
+    height: 12px;
+    margin-top: 2px;
+}
+.video .Content_Icon {
+    width: 110px;
+}
+.video .Index_Content_AppName, .video .list_app_info div { max-width: 150px; }
+
+
+.loadmore{
+    display: block;
+    width: 95%;
+    padding: 6px 0;
+    margin: 10px auto;
+    background: #ccc;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 10px;
+            border-radius: 10px;
+}
+
+.App_Content_Download {
+    height: 35px;
+    width: 80%;
+    line-height: 33px;
+    border-radius: 5px;
+    background-color: #D43232;
+    color: #FFF;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    margin: 7px 10%;
+}
+
+.appImg {
+    height: 220px;
+    overflow-x: scroll;
+    width: 100%;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.appImg img { height: 100%; width: auto; margin:0 7px; }
+.appInfo { margin: 10px; position: relative;}
+.appInfo .appInfoTitle { background-color: #dedede; border-left: 5px solid #D43232; padding-left: 10px; line-height: 25px; font-size: 14px; }
+.appInfoTable { font-size: 14px; color: #626262; line-height: 20px; margin: 7px 10px; }
+table.appInfoTable { margin-left: 20px; }

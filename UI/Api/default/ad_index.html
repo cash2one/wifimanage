@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>all WiFi Free</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="no">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" type="text/css" href="<#$Theme['T']['root']#>/adapi/css/style.css">
+    </head>
+    <body>
+        <!--<div class="ad_card" style="margin-top: 10px;">
+            <a href=""><img src="<#$Theme['T']['root']#>/adapi/icon/ad_1.jpg" /></a>
+        </div>
+        <div class="ad_card">
+            <a href=""><img src="<#$Theme['T']['root']#>/adapi/icon/ad_2.jpg" /></a>
+        </div>
+        <div class="ad_card">
+            <a href=""><img src="<#$Theme['T']['root']#>/adapi/icon/ad_3.jpg" /></a>
+        </div>-->
+        <volist name="lists" id="v">
+            <div class="ad_card" style="margin-top: 10px;">
+                <notempty name="v.url">
+                    <a href="<#$v.url#>">
+                <else />
+                    <a href="<#:U('listsinfo',array('id'=>$v['aid']))#>">
+                </notempty>
+                    <img src="<#$v.ad_thumb#>" /></a>
+                    <input type="hidden" class="aid" value="<#$v['aid']#>">
+                    <input type="hidden" class="apid" value="<#$v['apid']#>">
+            </div>
+        </volist>
+        <div class="linkBox">
+            <div class="linkIcon"><a href="<#:U('gameList')#>"><img src="<#$Theme['T']['root']#>/adapi/images/linkIcon_01.png" /></a></div>
+            <div class="linkIcon"><a href="<#:U('appList')#>"><img src="<#$Theme['T']['root']#>/adapi/images/linkIcon_02.png" /></a></div>
+            <div class="linkIcon"><a href="<#:U('videoList')#>"><img src="<#$Theme['T']['root']#>/adapi/images/linkIcon_03.png" /></a></div>
+        </div>
+        <script src="<#$Theme['T']['root']#>/adapi/script/jquery-1.11.1.min.js"></script>
+        <script src="<#$Theme['T']['root']#>/adapi/script/main.js"></script>
+    </body>
+</html>

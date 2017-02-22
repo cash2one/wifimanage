@@ -1,0 +1,59 @@
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta charset="UTF-8">
+	<title>all WiFi Free</title>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="<#$Theme['P']['js']#>/jquery.touchSwipe.transit.min.js"></script>
+    <script type="text/javascript" src="<#$Theme['T']['js']#>/slip.js"></script>
+	<link rel="stylesheet" href="<#$Theme['T']['css']#>/new-login/meida.css"/>
+	<link rel="stylesheet" href="<#$Theme['T']['css']#>/new-login/main.css"/>
+</head>
+<body id="ad">
+<div class="loader">
+    <div class="load-line">
+        <div class="load-line-bg"></div>
+        <div class="load-num" style="display:none;"><span>0</span>%</div>
+    </div>
+</div>
+<div id="container">
+	<div id="wrap">
+        <volist name="lists" id="vo">
+            <div class="swiper-slide" style="background-image: url(<#$vo.ad_thumb#>);"></div>
+        </volist>
+	</div>
+    <!--<div class="nav-point"><span></span><span></span><span></span><span></span></div>-->
+</div>
+<div id="sec">正在为您连接..&nbsp;20&nbsp;秒</div>
+</body>
+<script type="text/javascript" src="http://portal.ikuai8.com/sdk/ikAuth.js?_t=<?php echo time();?>"></script>
+<script type="text/javascript" src="<#$Theme['T']['js']#>/ad_load.js"></script>
+<!--<script>-->
+    <!--function getUrlParam(name) {-->
+        <!--var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");-->
+        <!--var r = window.location.search.substr(1).match(reg);-->
+        <!--if (r != null)-->
+            <!--return unescape(r[2]);-->
+        <!--return null;-->
+    <!--}-->
+
+    <!--var mac		=	ikClientMac();-->
+    <!--var ip		=	ikClientIp();-->
+    <!--var gw_id 	=   getUrlParam("apmac");-->
+
+    <!--$.ajax({-->
+        <!--url: '/index.php/api/UserAuth/noauth',-->
+        <!--type: "post",-->
+        <!--data:{-->
+            <!--'mac':mac,-->
+            <!--'gw_id':gw_id-->
+        <!--},-->
+        <!--dataType:'jsonp',-->
+        <!--success:function(){-->
+
+        <!--},-->
+        <!--error: function(XMLHttpRequest, textStatus, errorThrown) {-->
+
+        <!--}-->
+    <!--});-->
+<!--</script>-->

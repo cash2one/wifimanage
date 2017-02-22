@@ -1,0 +1,44 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>热门视频 - all WiFi Free</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="<#$Theme['T']['root']#>/adapi/css/style.css">
+</head>
+<body>
+<div class="Top">
+    <img class="topLogo" src="<#$Theme['T']['root']#>/adapi/images/allwifi_logo.png" onclick="history.go(-1);" />
+    <img class="topLogo" src="<#$Theme['T']['root']#>/adapi/images/topTitle_03.png" style="margin-left: 10px;" />
+</div>
+<div id="lists">
+    <volist name="lists" id="v">
+        <notempty name="v.url">
+            <div class="Index_Content" data-href="<#$v.url#>">
+                <else />
+                <div class="Index_Content" data-href="<#:U('listsinfo',array('id'=>$v['aid']))#>">
+        </notempty>
+            <img class="Content_Icon" src="<#$v['ad_thumb']#>" />
+            <div class="Index_Content_details">
+                <div class="Index_Content_AppName"><#$v['title']#></div>
+                <div class="list_app_info">
+                    <div>
+                        <#$v['description']#>
+                        <input type="hidden" class="aid" value="<#$v['aid']#>">
+                        <input type="hidden" class="apid" value="<#$v['apid']#>">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </volist>
+</div>
+<notempty name="more">
+    <a class="loadmore">加载更多</a>
+</notempty>
+<input type="hidden" id="limit" value="<#$limit#>" />
+<script src="<#$Theme['T']['root']#>/adapi/script/jquery-1.11.1.min.js"></script>
+<script src="<#$Theme['T']['root']#>/adapi/script/main.js"></script>
+</body>
+</html>
